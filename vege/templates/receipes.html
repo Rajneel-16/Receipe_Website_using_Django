@@ -78,8 +78,10 @@
           <th scope="col">Receipe Name</th>
           <th scope="col">Receipe Description</th>
           <th scope="col">Serving Preference</th>
+          {% if user.is_superuser or user.is_staff %}
           <th scope="col">Delete Receipe</th>
           <th scope="col">Update Receipe</th>
+          {% endif %}
         </tr>
       </thead>
       <tbody>
