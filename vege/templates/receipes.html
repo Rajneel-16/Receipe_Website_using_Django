@@ -86,11 +86,15 @@
         {% for receipe in receipes %}
         <tr>
           <th scope="row">{{forloop.counter}}</th>
-          <td>{{receipe.receipe_name}}</td>
-          <td>{{receipe.receipe_description}}</td>
-          <td><img src="{{ receipe.receipe_image.url}}" style="height: 100px;" alt="{{receipe_name}}"></td>
-          <td><a href="/delete-receipe/{{receipe.id}}/" class="btn btn-danger">Delete</a></td>
-          <td><a href="/update-receipe/{{receipe.id}}/" class="btn btn-success">Update</a></td>
+          <td style="font-size: larger;">{{receipe.receipe_name}}</td>
+          <td style="font-size: large;">{{receipe.receipe_description}}</td>
+          <td>
+            <img src="{{ receipe.receipe_image.url}}" style="height: 150px; width: 180px; border-radius: 25px;" alt="{{receipe_name}}">
+          </td>
+          {% if user.is_superuser or user.is_staff %}
+          <td style="padding-top: 30px;"><a href="/delete-receipe/{{receipe.id}}/" class="btn btn-danger">Delete</a></td>
+          <td style="padding-top: 30px;"><a href="/update-receipe/{{receipe.id}}/" class="btn btn-success">Update</a></td>
+          {% endif %}
         </tr>
         {% endfor %}
       </tbody>
